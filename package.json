@@ -7,8 +7,13 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "highlight.js": "^10.7.2",
+    "simple-syntax-highlighter": "^2.0.4",
+    "tailwindcss": "^2.1.1",
     "vue": "^3.0.0",
+    "vue-code-highlight": "^0.7.6",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
   },
