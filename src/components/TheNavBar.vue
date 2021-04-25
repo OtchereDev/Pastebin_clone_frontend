@@ -1,5 +1,5 @@
 <template>
-  <nav class="w-full px-6 py-3 flex justify-between bg-gray-200 items-center">
+  <nav class="w-full px-6 py-3 flex justify-between text-gray-200 bg-gray-800 items-center">
       <div class="flex items-center">
           <h1>
               PasteBin
