@@ -1,6 +1,6 @@
 <template>
   <div class='min-h-screen'>
-      <div class="px-5 lg:px-72 py-16 md:py-20" v-if="false">
+      <div class="px-5 lg:px-72 py-10 md:py-14" v-if="false">
           <h2 class="font-medium text-2xl ">
               Login Page
           </h2>
@@ -14,7 +14,7 @@
           <AuthRelatedPages/>
       </div>
 
-      <div class="px-2 md:px-10 lg:px-72 pt-10 md:pt-20" v-else>
+      <div class="px-5 lg:px-72 py-10 md:py-14" v-else>
           <h2 class="font-medium text-2xl ">
               Sign Up Page
           </h2>
