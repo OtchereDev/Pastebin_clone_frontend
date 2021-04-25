@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Auth from '../views/Auth.vue'
+import ForgotPassword from '../views/ForgotPassword.vue'
+import NoActivationMail from '../views/NoActivationMail.vue'
+import ForgotUsername from '../views/ForgotUsername.vue'
 
 const routes = [
   {
@@ -12,6 +15,21 @@ const routes = [
     path: '/auth',
     name: 'Auth',
     component: Auth
+  },
+  {
+    path:'/forgot-password',
+    name:'ForgotPassword',
+    component:ForgotPassword
+  },
+  {
+    path:'/forgot-username',
+    name:'ForgotUsername',
+    component:ForgotUsername
+  },
+  {
+    path:'/activation-email',
+    name:'NoActivationMail',
+    component:NoActivationMail
   }
 ]
 
