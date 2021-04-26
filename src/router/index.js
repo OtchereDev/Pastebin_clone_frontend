@@ -4,6 +4,8 @@ import Auth from '../views/Auth.vue'
 import ForgotPassword from '../views/ForgotPassword.vue'
 import NoActivationMail from '../views/NoActivationMail.vue'
 import ForgotUsername from '../views/ForgotUsername.vue'
+import Profile from '../views/Profile.vue'
+import CreatePasteBin from '../views/CreatePasteBin.vue'
 
 const routes = [
   {
@@ -30,6 +32,16 @@ const routes = [
     path:'/activation-email',
     name:'NoActivationMail',
     component:NoActivationMail
+  },
+  {
+    path:'/profile',
+    name:'Profile',
+    component:Profile
+  },
+  {
+    path:'/create-pastebin',
+    name:'CreatePasteBin',
+    component:CreatePasteBin
   }
 ]
 
