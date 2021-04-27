@@ -5,17 +5,54 @@
       </h3>
       <div class="flex flex-col">
 
-        <button class='bg-gray-500 rounded px-4 py-2 mt-2 font-medium'>Created New Account?</button>
-        <button class='bg-gray-500 rounded px-4 py-2 mt-2 font-medium'>Forgot Username?</button>
-        <button class='bg-gray-500 rounded px-4 py-2 mt-2 font-medium'>Forgot Password?</button>
-        <button class='bg-gray-500 rounded px-4 py-2 mt-2 font-medium'>No Activation Mail?</button>
+        <button @click="this.$emit('changeSignUp')" v-if='!currentPage' class='bg-gray-500 rounded px-4 py-2 mt-2 font-medium focus:outline-none'>Created New Account?</button>
+        <button @click="handleForgotUsername" v-if='currentPage !="username"' class='bg-gray-500 rounded px-4 py-2 mt-2 font-medium focus:outline-none'>Forgot Username?</button>
+        <button @click="handleForgotPassword" v-if='currentPage !="password"' class='bg-gray-500 rounded px-4 py-2 mt-2 font-medium focus:outline-none'>Forgot Password?</button>
+        <button @click="handleNoActivation" v-if='currentPage !="activate"' class='bg-gray-500 rounded px-4 py-2 mt-2 font-medium focus:outline-none'>No Activation Mail?</button>
       </div>
   </div>
 </template>
 
 <script>
+import { useRouter } from 'vue-router'
 export default {
+  props:{
+    currentPage:{
+      type:String
+    }
+  },
+  setup(){
+    const router =useRouter()
 
+    const handleForgotPassword=()=>{
+            router.push({
+                name:'ForgotPassword',
+             
+            })
+        }
+
+
+    const handleForgotUsername=()=>{
+            router.push({
+                name:'ForgotUsername',
+              
+            })
+        }
+
+
+    const handleNoActivation=()=>{
+            router.push({
+                name:'NoActivationMail',
+              
+            })
+        }
+
+
+
+    return {handleForgotPassword,
+            handleForgotUsername,
+            handleNoActivation}
+  }
 }
 </script>
 
