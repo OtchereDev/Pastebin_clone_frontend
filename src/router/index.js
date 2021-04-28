@@ -6,6 +6,9 @@ import NoActivationMail from '../views/NoActivationMail.vue'
 import ForgotUsername from '../views/ForgotUsername.vue'
 import Profile from '../views/Profile.vue'
 import CreatePasteBin from '../views/CreatePasteBin.vue'
+import ChangePassword from '../views/ChangePassword.vue'
+import MySetting from '../views/MySetting.vue'
+import ChangeProfile from '../views/ChangeProfile.vue'
 
 const routes = [
   {
@@ -42,6 +45,22 @@ const routes = [
     path:'/create-pastebin',
     name:'CreatePasteBin',
     component:CreatePasteBin
+  },
+  {
+    path:'/u/change-password',
+    name:'ChangePassword',
+    component:ChangePassword
+  },
+  
+  {
+    path:'/u/settings',
+    name:'MySetting',
+    component:MySetting
+  },
+  {
+    path:'/u/profile',
+    name:'ChangeProfile',
+    component:ChangeProfile
   }
 ]
 
