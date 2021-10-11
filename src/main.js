@@ -8,5 +8,6 @@ import 'highlight.js/styles/androidstudio.css'
 
 
 import './assets/style.css'
-
-createApp(App).use(store).use(VueHighlightJS).use(router).mount('#app')
+const app= createApp(App)
+app.provide("$store", store)
+app.use(store).use(VueHighlightJS).use(router).mount('#app')
