@@ -4,22 +4,27 @@
           Related Pages
       </h3>
       <div class="flex flex-col">
-
-        <button @click="this.$emit('changeSignUp')" v-if='!currentPage' class='bg-gray-500 rounded px-4 py-2 mt-2 font-medium focus:outline-none'>Created New Account?</button>
-        <button @click="handleForgotUsername" v-if='currentPage !="username"' class='bg-gray-500 rounded px-4 py-2 mt-2 font-medium focus:outline-none'>Forgot Username?</button>
-        <button @click="handleForgotPassword" v-if='currentPage !="password"' class='bg-gray-500 rounded px-4 py-2 mt-2 font-medium focus:outline-none'>Forgot Password?</button>
-        <button @click="handleNoActivation" v-if='currentPage !="activate"' class='bg-gray-500 rounded px-4 py-2 mt-2 font-medium focus:outline-none'>No Activation Mail?</button>
+        
+        <AppBaseBtn @click="this.$emit('changeSignUp')" v-if='!currentPage' title="Created New Account?" />
+        <AppBaseBtn @click="handleForgotUsername" v-if='currentPage !="username"' title="Forgot Username?" />
+        <AppBaseBtn @click="handleForgotPassword" v-if='currentPage !="password"' title="Forgot Password?" />
+       
+        
       </div>
   </div>
 </template>
 
 <script>
+import AppBaseBtn from '@/components/AppBaseBtn.vue'
 import { useRouter } from 'vue-router'
 export default {
   props:{
     currentPage:{
       type:String
     }
+  },
+  components:{
+    AppBaseBtn
   },
   setup(){
     const router =useRouter()

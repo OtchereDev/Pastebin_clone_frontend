@@ -12,20 +12,24 @@
 export default {
     props:{
         ActivePaste:{
-            type:String,
-            require: true
+            type:Number,
+            require: true,
+            default:0
         },
         PublicPaste:{
-            type:String,
-            required: true
+            type:Number,
+            required: true,
+            default:0
         },
         PrivatePaste:{
-            type:String,
-            required: true
+            type:Number,
+            required: true,
+            default:0
         },
         TotalPaste:{
-            type:String,
-            required: true
+            type:Number,
+            required: true,
+            default:0
         }
 
     }

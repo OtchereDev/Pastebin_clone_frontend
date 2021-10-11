@@ -5,9 +5,9 @@
                 Forgot Password Page
             </h2>
 
-            <hr class="border-gray-600 border-2">
+            <hr :class="!this.$store.getters.getUserPastePrefence.nightMode?'border-gray-200 ':'border-gray-600' " class=" border-2">
 
-            <div class='flex items-center mt-3 p-1 border border-gray-600'>
+            <div v-if="!error && !success" class='flex items-center mt-3 p-1 border border-gray-600'>
                 <div class='h-8 w-8 rounded-full mr-2 border-gray-200 border flex justify-center items-center'>
                     <p>i</p>
                 </div>
@@ -16,9 +16,27 @@
                 </p>
             </div>
 
-            <!-- Email component goes here -->
+            <div class=' rounded-lg p-2 my-2'
+            :class="!this.$store.getters.getUserPastePrefence.nightMode?'bg-gray-300 ':'bg-gray-700' " v-if='error'>
+            <p class='text-red-400  text-sm my-1' >{{error}} ...<router-link class='text-blue-600' :to="{name:'Auth',params:{signup:true}}">Sign Up</router-link></p>
+
+            </div>
+
+            <div class=' rounded-lg p-2 my-2'
+            :class="!this.$store.getters.getUserPastePrefence.nightMode?'bg-gray-300 ':'bg-gray-700' " v-if='success'>
+            <p class='text-green-500  text-sm my-1' >An email has been sent to you ... Please continue the process form there</p>
+
+            </div>
+
             
-            <AppEmailComponentVue/>
+
+            <!-- Email component goes here -->
+
+            <form class="w-full mt-5 md:w-10/12 md:mx-auto" @submit.prevent='handleSubmit' >
+            
+            <AppEmailComponentVue :captcha_error="captcha_error" @captchaOk='handleCaptchaOk' @EmailKeyUp='handleEmailKeyUp' :requesting="requesting" :error="emailError"/>
+            </form>
+            
 
             <!-- related pages goes here -->
             <AuthRelatedPages currentPage='password' />
@@ -29,12 +47,92 @@
 <script>
 import AppEmailComponentVue from '../components/AppEmailComponent.vue'
 import AuthRelatedPages from '../components/AuthRelatedPages.vue'
+import AppCaptcha from '@/components/AppCaptcha.vue'
+import { ref } from '@vue/reactivity'
+import handleForgotPassword from '@/composibles/handleForgotPassword'
+
 
 export default {
     name:'ForgotPassword',
     components:{
         AppEmailComponentVue,
         AuthRelatedPages,
+        AppCaptcha
+    },
+    setup(props,context){
+        const email= ref('')
+        const emailValue= ref('')
+        const emailError=ref(false)
+        const requesting=ref(false)
+        const success = ref(false)
+        const captcha_error=ref(false)
+        const captcha_checked=ref(false)
+
+        const handleCaptchaOk=()=>{
+            captcha_checked.value=true
+        }
+        
+
+      
+
+        const {error, forgotPassword} = handleForgotPassword()
+
+        const handleEmailKeyUp=(user_email)=>{
+            email.value=user_email
+        }
+
+        const handleSubmit=async(e)=>{
+            if(captcha_checked.value){
+                captcha_error.value=false
+            }else{
+                captcha_error.value=true
+            }
+
+            if(!email.value.length){
+                emailError.value=true
+                success.value=false
+            }else{
+                emailError.value=false
+                requesting.value=true
+                success.value=false
+                error.value=null
+
+                 if(!captcha_error.value){
+
+                    const action = await forgotPassword(email.value)
+
+                    success.value=action
+                    
+                 }
+
+
+                requesting.value=false
+                error.value=null
+
+               
+                
+
+                
+                
+            }
+
+            
+        }
+
+        return{
+            
+            email,
+            error,
+           
+            emailValue,
+            success,
+            requesting,
+            emailError,
+            handleEmailKeyUp,
+            handleSubmit,
+            handleCaptchaOk,
+            captcha_error
+        }
     }
 }
 </script>

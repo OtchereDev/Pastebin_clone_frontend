@@ -22,7 +22,7 @@ export default {
             type:Boolean
         },
         value:{
-            type:String,
+            type: [String, Number],
             required: true
         }
     }

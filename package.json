@@ -5,17 +5,27 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build-css":"tailwind build src/assets/styles.css -o src/assets/style.css"
+    "build-css": "tailwind build src/assets/styles.css -o src/assets/style.css"
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "babel-runtime": "^6.26.0",
+    "codemirror": "^5.61.0",
     "core-js": "^3.6.5",
     "highlight.js": "^10.7.2",
+    "prismjs": "^1.23.0",
     "simple-syntax-highlighter": "^2.0.4",
     "tailwindcss": "^2.1.1",
     "vue": "^3.0.0",
+    "vue-captcha": "^1.0.2",
     "vue-code-highlight": "^0.7.6",
+    "vue-codemirror": "^4.0.6",
+    "vue-monaco": "^1.2.2",
+    "vue-prism-component": "^2.0.0",
+    "vue-prismjs": "^1.2.0",
     "vue-router": "^4.0.0-0",
+    "vue3-code-mirror": "^1.0.3",
+    "vue3-highlightjs": "^1.0.5",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {

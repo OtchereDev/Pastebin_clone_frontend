@@ -5,7 +5,7 @@
               Login Page
           </h2>
 
-          <hr class="border-gray-600 border-2">
+          <hr :class="!this.$store.getters.getUserPastePrefence.nightMode?'bg-gray-200 text-gray-800':'bg-gray-600' " class=" border-2">
 
           <!-- Sign In Form component goes here -->
           <AppLogInForm/>
@@ -23,7 +23,7 @@
               Sign Up Page
           </h2>
 
-          <hr class="border-gray-600 border-2">
+          <hr :class="!this.$store.getters.getUserPastePrefence.nightMode?'border-gray-300 ':'border-gray-600' " class=" border-2">
 
           <!-- Sign Up Form component goes here -->
           <AppSignUpForm/>
@@ -61,8 +61,6 @@ export default {
         if(route.params.signup=='true'){
             signup.value=true
         }
-
-        console.log(route.params)
 
         const handlechangeSignUp=()=>{
             signup.value=true

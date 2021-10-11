@@ -9,37 +9,87 @@ import CreatePasteBin from '../views/CreatePasteBin.vue'
 import ChangePassword from '../views/ChangePassword.vue'
 import MySetting from '../views/MySetting.vue'
 import ChangeProfile from '../views/ChangeProfile.vue'
+import CodePasteDetail from '../views/CodePasteDetail.vue'
+import ResetPassword from '../views/ResetPassword.vue'
+
+import store from '@/store'
+
+const requireAuth=async(to,from,next)=>{
+
+    await store.dispatch('handleChangeUser')
+
+    const user= store.getters.getUser
+
+    if(user===null){
+      return next({name:'Auth'})
+    }else{
+      return next()
+    }
+}
+
+const requireNoAuth=async(to, from, next)=>{
+    await store.dispatch('handleChangeUser')
+
+    const user= store.getters.getUser
+
+    if(user!==null){
+      return next({name:'Home'})
+    }else{
+      return next()
+    }
+}
+
+const performNoAuth=async(to, from, next)=>{
+  await store.dispatch('handleChangeUser')
+
+  const user= store.getters.getUser
+
+  return next()
+}
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: CreatePasteBin,
+    beforeEnter:performNoAuth
   },
   {
     path: '/auth',
     name: 'Auth',
-    component: Auth
+    component: Auth,
+    beforeEnter:requireNoAuth
   },
   {
     path:'/forgot-password',
     name:'ForgotPassword',
-    component:ForgotPassword
+    component:ForgotPassword,
+    beforeEnter:requireNoAuth
+  },
+  {
+    path:'/reset/:field/:uid/:token',
+    name:'ResetPassword',
+    component:ResetPassword,
+    props:true,
+    beforeEnter:requireNoAuth
   },
   {
     path:'/forgot-username',
     name:'ForgotUsername',
-    component:ForgotUsername
+    component:ForgotUsername,
+    beforeEnter:requireNoAuth
   },
   {
     path:'/activation-email',
     name:'NoActivationMail',
-    component:NoActivationMail
+    component:NoActivationMail,
+    beforeEnter:requireNoAuth
   },
   {
     path:'/profile',
     name:'Profile',
-    component:Profile
+    component:Profile,
+    beforeEnter:requireAuth
   },
   {
     path:'/create-pastebin',
@@ -49,18 +99,28 @@ const routes = [
   {
     path:'/u/change-password',
     name:'ChangePassword',
-    component:ChangePassword
+    component:ChangePassword,
+    beforeEnter:requireAuth
   },
   
   {
     path:'/u/settings',
     name:'MySetting',
-    component:MySetting
+    component:MySetting,
+    beforeEnter:requireAuth
   },
   {
     path:'/u/profile',
     name:'ChangeProfile',
-    component:ChangeProfile
+    component:ChangeProfile,
+    beforeEnter:requireAuth
+  },
+  ,
+  {
+    path:'/paste/:uuid',
+    name:'CodePasteDetail',
+    component:CodePasteDetail,
+    props:true
   }
 ]
 

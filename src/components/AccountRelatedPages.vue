@@ -5,10 +5,10 @@
       </h3>
       <div class="flex flex-col">
 
-        <AppBaseBtn title='Profile' />
-        <AppBaseBtn title='Settings' />
-        <AppBaseBtn title='Password Change' />
-        <AppBaseBtn title='Delete Account' />
+        <AppBaseBtn @click='handleClickProfile' title='Profile' />
+        <AppBaseBtn @click='handleClickSettings' title='Settings' />
+        <AppBaseBtn @click='handleClickChangePassword' title='Password Change' />
+        <AppBaseBtn  title='Delete Account' />
        
 
       </div>
@@ -17,9 +17,32 @@
 
 <script>
 import AppBaseBtn from '@/components/AppBaseBtn.vue'
+import { useRouter } from 'vue-router'
 export default {
   components:{
     AppBaseBtn
+  },
+  setup(){
+
+    const router = useRouter()
+
+    const handleClickProfile=()=>{
+      router.push({name:'Profile'})
+    }
+
+    const handleClickSettings=()=>{
+      router.push({name:'MySetting'})
+    }
+
+    const handleClickChangePassword=()=>{
+      router.push({name:'ChangePassword'})
+    }
+
+    return {
+      handleClickProfile,
+      handleClickSettings,
+      handleClickChangePassword
+    }
   }
 }
 </script>
