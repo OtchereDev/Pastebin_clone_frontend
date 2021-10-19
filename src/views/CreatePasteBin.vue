@@ -63,7 +63,7 @@ import AppInput from '../components/AppInput.vue'
 import CreatePastePasswordInput from '../components/CreatePastePasswordInput.vue'
 import CreatePasteTitleInput from '../components/CreatePasteTitleInput.vue'
 import PasteFolderTitle from '../components/PasteFolderTitle.vue'
-import { VCodeMirror } from 'vue3-code-mirror'
+import { VCodeMirror } from '../components/vue3-code-mirror'
 import {ref,computed, onBeforeMount,watch} from 'vue'
 import handleNewPaste from '@/composibles/handleNewPaste'
 
