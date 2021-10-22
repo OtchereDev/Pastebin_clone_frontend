@@ -7,6 +7,7 @@ import 'codemirror/addon/fold/foldgutter.css';
 import 'codemirror/mode/python/python';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/dracula.css';
+import 'codemirror/theme/abcdef.css';
 import { capitalize, h, markRaw } from 'vue';
 import ResizeObserver from 'resize-observer-polyfill';
 // 这个组件会监听 html 标签上的 `theme-white` `theme-dark` 变化动态指定编辑器的主题色
@@ -39,14 +40,13 @@ let VCodeMirror = VCodeMirror_1 = class VCodeMirror extends VueComponentBase {
 
             
         }
-      
-            
+        
                           
 
         var editor = this.editor = markRaw(CodeMirror(this.$el, {
             value: this.value,
             mode: this.$props.mode,
-            theme: $theme.get() === 'white' ? 'default' : 'dracula',
+            theme: $theme.get() == 'white' ? 'default' : 'dracula',
             readOnly: this.readonly,
             lineWrapping: this.wrap,
             lineNumbers: true,

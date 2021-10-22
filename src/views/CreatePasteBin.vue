@@ -203,7 +203,7 @@ export default {
         tabSize: 4,
         lineNumbers: true,
         // line: true,
-        // theme: isDark.value
+        theme: isDark.value
       })
 
       watch(isDark,()=>{
