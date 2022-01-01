@@ -6,7 +6,7 @@
             </h2>
         </div>
         <div class="w-full">
-            <select @change="handleChange" :disabled='disabled' v-model="value" :class="!this.$store.getters.getUserPastePrefence.nightMode?'bg-gray-200 text-gray-800':'bg-gray-700' " class="outline-none p-2  rounded-md w-full">
+            <select @change="handleChange" :value="value" :disabled='disabled' v-model="value" :class="!this.$store.getters.getUserPastePrefence.nightMode?'bg-gray-200 text-gray-800':'bg-gray-700' " class="outline-none p-2  rounded-md w-full">
                 
                 <option v-for="lang,index in selectOption" :key='index' :value="lang" >{{lang[0].toUpperCase()+lang.slice(1,lang.length)}}</option>
                 
