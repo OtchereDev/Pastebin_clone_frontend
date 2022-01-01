@@ -31,7 +31,7 @@
                 <AppInput @InputChange='handleInputChangeOldPass' :error='old_passError' title="Current Password" inputType='password' :requiredType='true' />
                 <AppInput @InputChange='handleInputChangeNewPass' :error='new_passError' title="New Password" inputType='password' :requiredType='true' />
                 <AppInput @InputChange='handleInputChangeRePass' :customError='repeatError' :error='re_new_passError' title="New Password Again" inputType='password' :requiredType='true' />
-                <AppCaptcha @captchaOk='handleCaptchaOK'/>
+                <AppCaptcha :captcha_error="captchaError" @captchaOk='handleCaptchaOK'/>
 
             </div>
 
@@ -77,6 +77,8 @@ export default {
         const old_passError=ref(false)
         const new_passError=ref(false)
         const re_new_passError=ref(false)
+        const captchaError=ref(false)
+        const isCaptchaOk=ref(false)
 
         const store = useStore()
 
@@ -87,7 +89,8 @@ export default {
         const {changePassword,error}=handleChangePassword()
 
         const handleCaptchaOK=()=>{
-            console.log('ok')
+            isCaptchaOk.value = true
+            captchaError.value = false
         }
 
         const handleInputChangeOldPass=(input_value)=>{
@@ -108,7 +111,7 @@ export default {
             new_passError.value=false
             re_new_passError.value=false
 
-            if(old_pass.value.length && new_pass.value.length && re_new_pass.value.length){
+            if(old_pass.value.length && new_pass.value.length && re_new_pass.value.length && isCaptchaOk.value){
                 if (new_pass.value === re_new_pass.value){
                     await store.dispatch('handleChangeUser')
                     
@@ -137,6 +140,10 @@ export default {
                 if(!re_new_pass.value.length){
                     re_new_passError.value=true
                 }
+
+                if(!isCaptchaOk.value){
+                    captchaError.value=true
+                }
             }
         }
 
@@ -149,7 +156,9 @@ export default {
                 re_new_passError,
                 repeatError,
                 error,
-                requesting}
+                requesting,
+                captchaError,
+                }
     }
 }
 </script>
