@@ -9,7 +9,7 @@
         <div class="w-full">
             
             <myCaptcha class='text-black' resolve="text" mode='text' captchaBg='beige' :callSuccess="captchaOk" />
-            <p class="text-red-400 text-xs ml-5 my-1" v-if="captcha_error" > Please the captcha is required </p>
+            <p class="text-red-400 text-xs ml-5 my-1" v-if="captcha_error" > Please complete the captcha is required </p>
         </div>
 
     </div>
