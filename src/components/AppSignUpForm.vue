@@ -12,7 +12,7 @@
       
       <!-- TODO: DONE -->
       <!-- Added a reCAPTHA to sign up process -->
-      <AppCaptcha/>
+      <AppCaptcha :captcha_error="captchError" @captchaOk="handleCaptchaOk" />
       
       
 
@@ -52,6 +52,8 @@ export default {
         const emailError=ref(false)
         const passwordError=ref(false)
         const requesting=ref(false)
+        const captchError =ref(false)
+        const isCaptchaOk=ref(false)
 
         const {signup,error}=handleSignUp()
 
@@ -69,6 +71,11 @@ export default {
             password.value=value
         }
 
+        const handleCaptchaOk=()=>{
+            isCaptchaOk.value = true
+            captchError.value=false
+        }
+
         const handleSubmit=async()=>{
             usernameError.value=false
             emailError.value=false
@@ -77,7 +84,7 @@ export default {
             requesting.value=true
             
 
-            if(username.value.length && password.value.length,email.value.length){
+            if(username.value.length && password.value.length && email.value.length && isCaptchaOk.value){
                await signup(username.value,password.value,email.value)
                 requesting.value=false
 
@@ -100,6 +107,9 @@ export default {
                 if(!email.value.length){
                     emailError.value=true
                 }
+                if(!isCaptchaOk.value){
+                    captchError.value=true
+                }
             }
           
 
@@ -116,7 +126,10 @@ export default {
                 handleUsernameInput,
                 handleEmailInput,
                 handlePasswordInput,
-                handleSubmit}
+                handleSubmit,
+                captchError,
+                handleCaptchaOk
+                }
 
     }
     
