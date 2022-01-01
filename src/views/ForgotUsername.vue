@@ -105,6 +105,7 @@ export default {
 
         const handleCaptchaOk=()=>{
             captcha_checked.value=true
+            captcha_error.value=false
         }
 
         return{
