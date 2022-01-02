@@ -16,8 +16,8 @@
 
               <div>
                 
-                  <AppSelect :value='defaultSyntax' @selectChange='handleSelectChangeSyntax' title="Default syntax" :selectOption='["PLAINTEXT","PYTHON","JAVASCRIPT"]'/>
-                  <AppSelect :value='defaultExpiration' @selectChange='handleSelectChangeExpiration' title="Default expiration" :selectOption='["Never","1 week"]'/>
+                  <AppSelect :value='defaultSyntax' @selectChange='handleSelectChangeSyntax' title="Default syntax" :selectOption='languages'/>
+                  <AppSelect :value='defaultExpiration' @selectChange='handleSelectChangeExpiration' title="Default expiration" :selectOption='expirations'/>
                   <AppSelect :value='defaultExposure' @selectChange='handleSelectChangeExposure' title="Default exposure" :selectOption='["Public","Private"]'/>
                   <AppSelect :value='defaultMode' @selectChange='handleSelectChangeMode' title="Night mode" :selectOption='["enabled","disabled"]'/>
 
@@ -67,19 +67,27 @@ export default {
       
       const store = useStore()
 
-      const defaultSyntax=ref(
+      const defaultSyntax=computed(()=>
         store.getters.getUserPastePrefence.defaultSyntax
       )
-      const defaultExpiration=ref(
+      const defaultExpiration=computed(()=>
         store.getters.getUserPastePrefence.defaultExpiration[0]+
         store.getters.getUserPastePrefence.defaultExpiration.slice(1,store.getters.getUserPastePrefence.defaultExpiration.length).toLowerCase()
       )
-      const defaultExposure=ref(
+      const defaultExposure=computed(()=>
         store.getters.getUserPastePrefence.defaultExposure?"Public":"Private"
       )
-      const defaultMode=ref(
+      const defaultMode=computed(()=>
         store.getters.getUserPastePrefence.nightMode?"enabled":"disabled"
       )
+
+      const languages = computed(()=>{
+        return store.getters.getLanguages
+      })
+
+      const expirations=computed(()=>{
+        return store.getters.getExpirations
+      })
 
       // onBeforeMount(async()=>{
       //   await store.dispatch('handleChangeUserPreference')
@@ -139,7 +147,9 @@ export default {
         handleSelectChangeExpiration,
         handleSelectChangeExposure,
         handleSelectChangeMode,
-        handleSubmit
+        handleSubmit,
+        languages,
+        expirations
       }
     }
 }
