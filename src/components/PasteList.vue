@@ -34,9 +34,6 @@ export default {
 
             data.value=top_paste.top_paste
 
-            console.log(data.value)
-
-
         })
 
         return {data}
