@@ -19,6 +19,7 @@ export default {
     const store=useStore()
    onBeforeMount(async()=>{
         await store.dispatch('handleChangeUserPreference')
+        await store.dispatch("handleGetUserProfile")
       })
 
   }

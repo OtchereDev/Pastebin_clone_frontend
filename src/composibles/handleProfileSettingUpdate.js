@@ -34,9 +34,12 @@ const handleProfileSettingUpdate=()=>{
             }
             else{
                 const form =new FormData()
-                form.append('avatar',user_data['avatar'])
-                form.append('location',user_data['location'])
-                form.append('website_url',user_data['website_url'])
+                if (user_data['avatar'])
+                    form.append('avatar',user_data['avatar'])
+                if (user_data['location'])
+                    form.append('location',user_data['location'])
+                if (user_data['website_url'])
+                    form.append('website_url',user_data['website_url'])
                 res=await fetch(url,{
                     method:"POST",
                     headers:{
